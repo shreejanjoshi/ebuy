@@ -41,9 +41,6 @@ class Product {
     #[ORM\Column(type: 'string', length: 4)]
     private $state;
 
-    #[ORM\Column(type: 'float')]
-    private $shipping_price;
-
     public function getId(): ?int {
         return $this->id;
     }
@@ -134,16 +131,6 @@ class Product {
 
     public function setState(string $state): self {
         $this->state = $state;
-
-        return $this;
-    }
-
-    public function getShippingPrice(): ?float {
-        return $this->shipping_price;
-    }
-
-    public function setShippingPrice(float $shipping_price): self {
-        $this->shipping_price = $shipping_price;
 
         return $this;
     }
