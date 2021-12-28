@@ -101,6 +101,31 @@ Stand up meeting: Talked with Sreejan about the changes of the workflow and Symf
 * The name Tom wants for this project doesn’t agree with the team. So planning to give a Better name. Finish on Next Monday.
 * Stand up meeting at the end of day : 
 
+Day 6
+
+Standup meeting: creating own class and working with symfony. 
+Everyone has own repo and worked with symfony created a class. + new repo for the project created
+Missing files in the main branch, errors => vendor file added, ignored because of gitignore.
+Day end stand up : tomorrow we’ll clone Sreejan repo and work on there. Need to fix classes and login + database upto date.
+Link: https://github.com/christiaanvdw/symph, https://github.com/Lakneswaran/Symfonyproject,
+
+
+Day 7:
+
+- Standup meeting: 2 hour discussed for payment and order and product: Conclusion after must have add new table for payment/ order details.
+- everyone clone from new repo and work on it
+- error with missing folders-> vendorfolder is missing and error handshake -> symfony server:stop-> server:ca:uninstall->symfony server:ca:install -> sumfony server:start or symfony serve.
+- error with the database: created a username in phpmyadmin
+Then -> php bin/console doctrine:database:create
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+
+- Biniyak : worked on order class
+- Stevan : error fixing and documentation reading
+- Sreejan : worked with login and helped with database creeren
+- Christian: Documentation reading, installed database
+
+“Today learned more about symfony and trying to understand how you guys setup the database and how to improve it. Planning to do as stefan suggested working on methods for updating the db” -Chris
 
 
 ### What is Symfony? 
@@ -156,3 +181,66 @@ Symfony uses a powerful template language called twig. Twig allows you to write 
 
 - Doctrine 2 is an object-relational mapper (ORM) for PHP 71+ that provides transparent persistence for PHP objects. 
 Php object code -> create table, database.
+
+Sympony - Doctrine ORM
+
+Database Model can creat with symfony doesn’t required to go phpmyadmin. 
+
+Symfony - configuare a Database
+
+In “app/config/parameters.yml” file config your username, password, mailer_transport. =>
+In console: php bin/console doctrine:database:create
+
+Symfony installation 
+
+Required tools:
+
+- Composer -- A dependency manager for php
+- php 7 or Above
+- CMD promt
+
+Creat a symfony with basic folders
+
+- composer create-project symfony/framework-standard-edition ebuyscrum - for version 3.4
+
+Or 
+
+Symfony new ScrumEbay & symfony serve
+
+“v4.27.3”
+After the installation it will ask:
+- host : localhost
+- port : 
+- name : mysymfony
+- user : root
+- password, transport, host, user, secret :
+
+
+
+cls is clear
+
+Cd projectname
+
+php bin/console server:run -> the installed framework will start.
+
+Symfony serve
+
+Localhost:8000
+Sympony Routing and controller 
+
+How to create controller:
+
+- symfony console make:controller CategoryController
+
+Explanation :
+#[Route('/category', name: 'category')]
+URL path that we are calling.
+return $this->render(
+The page we are viewing in the front end returning. 
+
+
+
+
+$ symfony serve
+$ bin/console | grep doctrine
+$ bin/console make:entity
