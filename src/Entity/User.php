@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -23,6 +25,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private $password;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $first_name;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $last_name;
+
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    private $username;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $address_line;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $city;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $post_code;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $country;
+
+    #[ORM\OneToMany(mappedBy: 'seller_id', targetEntity: Product::class, orphanRemoval: true)]
+    private $products;
+
+    public function __construct() {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -111,5 +141,111 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstName(string $first_name): self
+    {
+        $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function setLastName(string $last_name): self
+    {
+        $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getAddressLine(): ?string
+    {
+        return $this->address_line;
+    }
+
+    public function setAddressLine(string $address_line): self
+    {
+        $this->address_line = $address_line;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getPostCode(): ?string
+    {
+        return $this->post_code;
+    }
+
+    public function setPostCode(string $post_code): self
+    {
+        $this->post_code = $post_code;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setSeller($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getSeller() === $this) {
+                $product->setSeller(null);
+            }
+        }
+
+        return $this;
     }
 }
