@@ -24,8 +24,8 @@
 				{% for orders in order %}
 					{% set total = total + orders.price %}
 					<tr>
-						<td>{{orders.orderId}}</td>
-						<td>{{orders.name}}</td>
+						<td>{{orders.id}}</td>
+						<td>{{orders.product}}</td>
 						<td>{{orders.price}}</td>
 						
 					</tr>
