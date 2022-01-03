@@ -3,7 +3,7 @@
 {% block title %}Hello OrderController!{% endblock %}
 
 {% block body %}
-	{% set summe = 0 %}
+	{% set total = 0 %}
 
 	<br>
 	<div class="container">
@@ -13,17 +13,16 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<td>Bestell Nr.</td>
+					<td>Order Nr.</td>
 					<td>Name</td>
-					<td>Preis</td>
-					<td>Status</td>
+					<td>Price</td>
 					<td></td>
 				</tr>
 			</thead>
 
 			<tbody>
 				{% for orders in order %}
-					{% set summe = summe + bestellung.preis %}
+					{% set total = total + orders.price %}
 					<tr>
 						<td>{{orders.orderId}}</td>
 						<td>{{orders.name}}</td>
