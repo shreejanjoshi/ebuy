@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
-use Doctrine\DBAL\Types\TextType;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 
 class RegisterController extends AbstractController
 {
     #[Route('/reg', name: 'register')]
-    public function reg(): Response
+    public function reg(Request $request, UserPasswordHasherInterface $passHasher): Response
     {
         $regform = $this->createFormBuilder()
         
