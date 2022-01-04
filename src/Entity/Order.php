@@ -14,7 +14,7 @@ class Order
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'string', nullable: true)]
     private $product;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -28,12 +28,12 @@ class Order
         return $this->id;
     }
 
-    public function getProduct(): ?int
+    public function getProduct(): ?string
     {
         return $this->product;
     }
 
-    public function setProduct(?int $product): self
+    public function setProduct(?string $product): self
     {
         $this->product = $product;
 

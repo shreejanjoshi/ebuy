@@ -12,11 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrderController extends AbstractController
 {
     #[Route('/order', name: 'order')]
-    public function index(Product $product): Response
+    public function index(): Response
     {
         $order = new Order();
-        $order->setProduct($product->getName());
-        $order->setTotalPrice($product->getPrice());
+        $order->setProduct("grape");
+        $order->setTotalPrice(15);
 
         // entity manager
     $em = $this->getDoctrine()->getManager();
