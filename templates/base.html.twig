@@ -33,18 +33,18 @@
 		<div class="header-right">
 			<div class="user-panel">
 			
-			{# {% if not is_granted('IS_AUTHENTICATED_FULLY') %} #}
+			{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 				<a href="{{path('app_login')}}" class="login">Login</a>
 				<a href="{{path('register')}}" class="register">Register</a>
-			{# {% endif %} #}
-			{# {% if is_granted('IS_AUTHENTICATED_FULLY') %} #}
+			{% endif %}
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				{# <a href="{{path('app_logout')}}" class="login">Logout</a> #}
-			{# {% endif %} #}
+			{% endif %}
 			</div> 
 		</div>
 		<ul class="main-menu">
 			<li><a href="{{path('home')}}">Home</a></li>
-			{# {% if is_granted('IS_AUTHENTICATED_FULLY') %} #}
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 			<li><a href="#">Profile</a>
 				<ul class="sub-menu">
 					<li><a href="">Produts</a></li>
@@ -52,7 +52,7 @@
 					<li><a href="{{path('app_logout')}}">Logout</a></li>
 				</ul>
 			</li>
-			{# {% endif %} #}
+			{% endif %}
 		</ul>
 	</header>
 	<!-- Header section end -->
