@@ -13,6 +13,15 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'hobbies' => [
+                'gaming',
+                'programming'
+            ],
+            'age' => 30,
+            'name' => 'laki'
+            // 'category' => $category,
+            // 'name' => $category->getName()
+
         ]);
     }
 }
