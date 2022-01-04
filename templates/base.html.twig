@@ -44,7 +44,11 @@
 		</div>
 		<ul class="main-menu">
 			<li><a href="{{path('home')}}">Home</a></li>
+
+			<li><a href="{{path('contact')}}">Contact Us!</a></li>
+
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
 			<li><a href="#">Profile</a>
 				<ul class="sub-menu">
 					<li><a href="">Produts</a></li>
@@ -56,6 +60,7 @@
 		</ul>
 	</header>
 	<!-- Header section end -->
+	{% include 'flash_messages.html.twig' %}
     {% block body %} {% endblock %}
 
 	
