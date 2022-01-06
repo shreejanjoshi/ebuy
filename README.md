@@ -244,3 +244,15 @@ The page we are viewing in the front end returning.
 $ symfony serve
 $ bin/console | grep doctrine
 $ bin/console make:entity
+
+
+Install symfony mailer component with:
+
+$ composer require symfony/mailer
+
+Emails are delivered via a "transport". Out of the box, you can deliver emails over SMTP by configuring the DSN in your .env file:
+
+MAILER_DSN=smtp://user:pass@smtp.example.com:port
+
+
+

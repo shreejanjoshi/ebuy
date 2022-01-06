@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OrderController!{% endblock %}
+
+{% block body %}
+	{% set total = 0 %}
+
+	<br>
+	<div class="container">
+		<h2>Your Orders</h2>
+		<br>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>Order Nr.</td>
+					<td>Name</td>
+					<td>Quantity</td>
+					<td>Price</td>
+					<td></td>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for orders in order %}
+					{% set total =total+(orders.quantity * orders.productPrice) %}
+					<tr>
+						<td>{{orders.id}}</td>
+						<td>{{orders.product}}</td>
+						<td>{{orders.quantity}}</td>
+						<td>{{orders.productPrice}}</td>
+						
+					</tr>
+				{% endfor %}
+				<td>Total: </td>
+				<td>{{total}}
+					EUR</td>
+				
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
