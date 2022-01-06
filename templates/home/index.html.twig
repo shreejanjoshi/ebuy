@@ -1,31 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Homepage{% endblock %}
 
 {% block body %}
 
-<div>
-{{categories[0].name}} 
-{{categories[0].description}}<br>
-{{categories[1].name}}
-{{categories[1].description}}
-{{categories[1].image}}<br>
-</div>
-
-{# <h1>Choose it {{ category.name | raw }}</h1>
-
-
-
-{%  if category.name %}
-    <p>it is for Adult.</p>
-{% else %}    
-    <p>it is for the Child</p>
-       
-{% endif %}    
-{% for hobby in hobbies %}   
-    <li> {{ hobby }}</li>
-{% else %}
-    <p>No hobbies found</p>
-{% endfor %}         #}
 
 {% endblock %}
