@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\User;
 use App\Repository\ProductRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,10 +86,32 @@ class ProductController extends AbstractController
         $product = $productRepository
             ->find($id);
 
-        // return new Response('This is the product with id ' . $product->getId() . ' and name ' . $product->getName());
         return $this->render('product/detail.html.twig', [
             'controller_name' => 'ProductController',
             'product' => $product
+        ]);
+    }
+
+    // route from homepage based on Category name
+    // still wip because the 
+    #[Route('/{name}', name: 'category-name')]
+    public function showCategoryByName(string $name, CategoryRepository $categoryRepository, ProductRepository $productRepository, ManagerRegistry $doctrine): Response
+    {
+        // $category = $categoryRepository
+        //     ->find($id); 
+
+        $categoryRepository = $doctrine->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(['name' => $name]);
+
+        $categoryId = $category->getId();
+
+        $products = $productRepository->getAllProductsByCategoryId($categoryId);
+        // $productRepository = $doctrine->getRepository(Product::class)->getAllProductsByCategoryId($catId);
+
+        return $this->render('home/detail.html.twig', [
+            'controller_name' => 'HomeController',
+            'category' => $category,
+            'products' => $products,
         ]);
     }
 }

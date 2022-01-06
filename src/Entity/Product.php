@@ -82,18 +82,6 @@ class Product
         return $this;
     }
 
-    // public function getCategory(): int
-    // {
-    //     return $this->category;
-    // }
-
-    // public function setCategory(int $category): self
-    // {
-    //     $this->category = $category;
-
-    //     return $this;
-    // }
-
     public function getCategory(): ?Category
     {
         return $this->category;
