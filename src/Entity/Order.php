@@ -14,14 +14,14 @@ class Order
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: 'string', length: 255 ,nullable: true)]
     private $product;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $quantity;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private $totalPrice;
+    private $productPrice;
 
     public function getId(): ?int
     {
@@ -52,14 +52,14 @@ class Order
         return $this;
     }
 
-    public function getTotalPrice(): ?float
+    public function getProductPrice(): ?float
     {
-        return $this->totalPrice;
+        return $this->productPrice;
     }
 
-    public function setTotalPrice(?float $totalPrice): self
+    public function setProductPrice(?float $productPrice): self
     {
-        $this->totalPrice = $totalPrice;
+        $this->totalPrice = $productPrice;
 
         return $this;
     }

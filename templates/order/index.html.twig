@@ -7,7 +7,7 @@
 
 	<br>
 	<div class="container">
-		<h2>order here</h2>
+		<h2>Your Orders</h2>
 		<br>
 
 		<table class="table table-striped">
@@ -15,6 +15,7 @@
 				<tr>
 					<td>Order Nr.</td>
 					<td>Name</td>
+					<td>Quantity</td>
 					<td>Price</td>
 					<td></td>
 				</tr>
@@ -22,20 +23,19 @@
 
 			<tbody>
 				{% for orders in order %}
-					{% set total = total + orders.price %}
+					{% set total =total+(orders.quantity * orders.productPrice) %}
 					<tr>
 						<td>{{orders.id}}</td>
 						<td>{{orders.product}}</td>
-						<td>{{orders.price}}</td>
+						<td>{{orders.quantity}}</td>
+						<td>{{orders.productPrice}}</td>
 						
 					</tr>
 				{% endfor %}
-				<td></td>
-				<td></td>
+				<td>Total: </td>
 				<td>{{total}}
 					EUR</td>
-				<td></td>
-				<td></td>
+				
 			</tbody>
 		</table>
 	</div>

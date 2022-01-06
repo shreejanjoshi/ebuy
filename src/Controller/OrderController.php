@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Order;
-use App\Entity\Product;
-
+use App\Repository\OrderRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,27 +13,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrderController extends AbstractController
 {
     #[Route('/order', name: 'order')]
-    public function index(): Response
+    public function index(OrderRepository $orderRepository): Response
     {
-        $order = new Order();
-        $order->setProduct("grape");
-        $order->setTotalPrice(15);
-
-        // entity manager
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($order);
-    $em->flush();
+        $order = $orderRepository->findAll();
         return $this->render('order/index.html.twig', [
-            'order' => '$order',
+            'order' => $order,
         ]);
     }
-    public function order(Product $product){
+    
+    public function order(Product $product,ManagerRegistry $doctrine){
         $order = new Order();
-        $order->setProduct($product->getName());
-        $order->setTotalPrice($product->getPrice());
+        $order->setProduct("shirt");
+        $order->setQuantity(20);
+        $order->setTotalPrice(200);
 
         // entity manager
-    $em = $this->getDoctrine()->getManager();
+    $em = $doctrine()->getManager();
     $em->persist($order);
     $em->flush();
 
