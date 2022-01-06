@@ -147,9 +147,10 @@ Header section
 	background: #08192d;
 }
 
-.site-logo {
+.site-logo{
 	display: inline-block;
 	font-weight: bold;
+	text-align: center;
 }
 
 .siteHeader{
@@ -1296,6 +1297,8 @@ Artest Page
 	padding-top: 0;
 	float: right;
 }
+
+
 
 /* ----------------
 Responsive
