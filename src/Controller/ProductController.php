@@ -29,7 +29,7 @@ class ProductController extends AbstractController
         $products = $repository->findAll();
 
         // return new Response('This is the product with id ' . $product->getId() . ' and name ' . $product->getName());
-        return $this->render('product/index.html.twig', [
+        return $this->render('product/detail.html.twig', [
             'controller_name' => 'ProductController',
             'products' => $products,
         ]);

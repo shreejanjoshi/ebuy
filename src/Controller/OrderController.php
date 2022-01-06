@@ -8,6 +8,7 @@ use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,8 +25,9 @@ class OrderController extends AbstractController
         ]);
     }
     #[Route('/toOrder/{id}', name: 'toOrder')]
-    public function order(Product $product,ManagerRegistry $doctrine){
+    public function order(ManagerRegistry $doctrine, Request $request){
         $order = new Order();
+        $product = new Product();
         $order->setProduct($product->getName());
         $order->setProductPrice($product->getPrice());
         $order->setQuantity($product->getQuantity());
