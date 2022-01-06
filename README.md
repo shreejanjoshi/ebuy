@@ -245,4 +245,14 @@ $ symfony serve
 $ bin/console | grep doctrine
 $ bin/console make:entity
 
-<img src="{{ absolute_url(asset('../img/web/marvel.jpg'))  }}" alt="Symfony!" /> => from the local
+
+Install symfony mailer component with:
+
+$ composer require symfony/mailer
+
+Emails are delivered via a "transport". Out of the box, you can deliver emails over SMTP by configuring the DSN in your .env file:
+
+MAILER_DSN=smtp://user:pass@smtp.example.com:port
+
+
+
