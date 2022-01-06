@@ -94,7 +94,7 @@ class ProductController extends AbstractController
 
     // route from homepage based on Category name
     // still wip because the 
-    #[Route('/{name}', name: 'category-name')]
+    #[Route('/category/{name}', name: 'category-name')]
     public function showCategoryByName(string $name, CategoryRepository $categoryRepository, ProductRepository $productRepository, ManagerRegistry $doctrine): Response
     {
         // $category = $categoryRepository
