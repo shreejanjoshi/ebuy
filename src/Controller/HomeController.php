@@ -14,28 +14,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(ManagerRegistry $doctrine): Response
     {
-//    $category = new Category('Rakneswaran', 'bCodeStudent', 'becode.png', 'DC');
    
    $repository = $doctrine->getRepository(Category::class);
    $categories = $repository->findAll();
 
-   // return new Response('This is the product with id ' . $product->getId() . ' and name ' . $product->getName());
    return $this->render('home/index.html.twig', [
        'controller_name' => 'HomeController',
        'categories' => $categories,
    ]);
-
-        // return $this->render('home/index.html.twig', [
-        //     'controller_name' => 'HomeController',
-        //     'hobbies' => [
-        //         'gaming',
-        //         'programming'
-        //     ],
-        //     'age' => 30,
-        //     'name' => 'laki',
-        //     'category' => $category
-        //     // 'name' => $category->getName()
-
-        // ]);
     }
 }
