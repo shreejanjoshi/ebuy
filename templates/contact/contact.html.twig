@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
+
+{% block title %}Hello ContactController!{% endblock %}
+
 {% block body %}
     <br>
         <div class="container">
-            <h2>Contact Us!</h2>
+            <h2>Contact Us</h2>
                 <br>
                  {{  form_start(our_form) }}
                  {{  form_widget(our_form ) }}

@@ -25,30 +25,13 @@
 </head>
 <body>
 
-	<!-- Header section -->
-	<header class="header-section clearfix">
-		<a href="index.html" class="site-logo">
-			<img src="{{asset('img/logo2.png')}}" height="70px" alt="">
-		</a>
-		<div class="header-right">
-			<div class="user-panel">
-			
-			{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-				<a href="{{path('app_login')}}" class="login">Login</a>
-				<a href="{{path('register')}}" class="register">Register</a>
-			{% endif %}
-			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-				{# <a href="{{path('app_logout')}}" class="login">Logout</a> #}
-			{% endif %}
-			</div> 
-		</div>
-		<ul class="main-menu">
-			<li><a href="{{path('home')}}">Home</a></li>
+		{% include 'header.html.twig' %}
 
-			<li><a href="{{path('contact')}}">Contact Us!</a></li>
+		{% include 'flash_messages.html.twig' %}
 
-			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		{% block body %}{% endblock %}
 
+<<<<<<< HEAD
 			<li><a href="#">Profile</a>
 				<ul class="sub-menu">
 					<li><a href="">Products</a></li>
@@ -62,10 +45,10 @@
 	<!-- Header section end -->
 	{% include 'flash_messages.html.twig' %}
     {% block body %} {% endblock %}
+=======
+		{% include'footer.html.twig' %}
+>>>>>>> 5e52e468d03172c57bb64f2c19ca8c3adf74cdc7
 
-	
-	
-	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
