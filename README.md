@@ -244,3 +244,5 @@ The page we are viewing in the front end returning.
 $ symfony serve
 $ bin/console | grep doctrine
 $ bin/console make:entity
+
+<img src="{{ absolute_url(asset('../img/web/marvel.jpg'))  }}" alt="Symfony!" /> => from the local
