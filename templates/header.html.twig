@@ -1,5 +1,4 @@
 {% block header %}
-
     <!-- Header section -->
     <header class="header-section clearfix">
         <a href="{{path('home')}}" class="site-logo">
@@ -13,7 +12,8 @@
                     <a href="{{path('register')}}" class="register">Register</a>
                 {% endif %}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    {# <a href="{{path('app_logout')}}" class="login">Logout</a> #}
+                    <a href="{{path('app_logout')}}" class="register">Logout</a>
+                    {# <a href="{{path('home')}}">{{app.user.firstName}}</a> #}
                 {% endif %}
             </div>
         </div>
@@ -23,10 +23,13 @@
 
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-                <li><a href="#">Profile</a>
+                <li><a href="#">{{app.user.firstName}}</a>
                     <ul class="sub-menu">
                         <li><a href="">Produts</a></li>
                         <li><a href="">Sell</a></li>
+                        <li><a href="{{path('myInfo')}}">My Info</a></li>
+                        <li><a href="">Products</a></li>
+                        <li><a href="{{path('order')}}">Order</a></li>
                         <li><a href="{{path('app_logout')}}">Logout</a></li>
                     </ul>
                 </li>

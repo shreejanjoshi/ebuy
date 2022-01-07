@@ -13,23 +13,22 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<td>Order Nr.</td>
+					<td>Product Nr.</td>
 					<td>Name</td>
-					<td>Quantity</td>
 					<td>Price</td>
+					<td>Quantity</td>
 					<td></td>
 				</tr>
 			</thead>
 
 			<tbody>
-				{% for orders in order %}
-					{% set total =total+(orders.quantity * orders.productPrice) %}
+				{% for products in product %}
+					{% set total =total+(products.quantity * products.price) %}
 					<tr>
-						<td>{{orders.id}}</td>
-						<td>{{orders.product}}</td>
-						<td>{{orders.quantity}}</td>
-						<td>{{orders.productPrice}}</td>
-						
+						<td>{{products.id}}</td>
+						<td>{{products.name}}</td>
+						<td>{{products.price}}</td>
+						<td>{{products.quantity}}</td>	
 					</tr>
 				{% endfor %}
 				<td>Total: </td>
