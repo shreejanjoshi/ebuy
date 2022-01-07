@@ -4,4 +4,61 @@
 
 {% block body %}
 
+{# <div>
+{{categories[0].name}} 
+{{categories[0].description}}<br>
+{{categories[1].name}}
+{{categories[1].description}}
+{{categories[1].image}}<br>
+</div>
+
+<div>
+    <img src="{{ absolute_url(asset('../img/web/marvel.jpg'))  }}" alt="Symfony!" />
+    <img src="{{ categories[1].image }}" alt="Symfony!" />
+
+</div> #}
+{# <div class="container">
+    <div class="d-inline category" >
+        {% for category in categories%}
+
+            <img width = "100px" height="100px" src="{{ category.image}}" alt="caterogies-list" />
+            {{category.name}}
+
+        {%endfor%}
+    </div>
+
+</div>     #}
+</div>
+    <div class="container">
+       {% for category in categories%}
+    <div class="card" p-2>
+    <div class="card-header">
+        <img width = "100px" height="100px" src="{{ category.image}}" alt="caterogies-list" />
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{category.name}}</h5>
+        <p class="card-text">{{category.description}}</p>
+        <a href="/category/{{category.name}}" class="btn btn-primary">Go {{category.name}}</a>
+    </div>
+    </div>
+    {%endfor%}
+</div>
+
+
+{# <h1>Choose it {{ category.name | raw }}</h1>
+
+
+
+{%  if category.name %}
+    <p>it is for Adult.</p>
+{% else %}    
+    <p>it is for the Child</p>
+       
+{% endif %}    
+{% for hobby in hobbies %}   
+    <li> {{ hobby }}</li>
+{% else %}
+    <p>No hobbies found</p>
+{% endfor %}         #}
+
 {% endblock %}
