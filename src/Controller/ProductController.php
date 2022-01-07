@@ -7,6 +7,7 @@ use App\Entity\Category;
 use App\Entity\User;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,73 +15,43 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    // #[Route('/product', name: 'product')]
-    // public function index(): Response
-    // {
-    //     return $this->render('product/index.html.twig', [
-    //         'controller_name' => 'ProductController',
-    //     ]);
-    // }
+    // route from homepage based on Category name
+    // still wip because the seller details aren't there (yet, hopefully?)
+    #[Route('/category/{name}', name: 'category-name')]
+    public function showCategoryByName(string $name, CategoryRepository $categoryRepository, ProductRepository $productRepository, ManagerRegistry $doctrine): Response
+    {
+        $categoryRepository = $doctrine->getRepository(Category::class);
+        $category = $categoryRepository->findOneBy(['name' => $name]);
 
-    #[Route('/product', name: 'product')]
+        $categoryId = $category->getId();
+
+        $products = $productRepository->getAllProductsByCategoryId($categoryId);
+        // $productRepository = $doctrine->getRepository(Product::class)->getAllProductsByCategoryId($catId);
+
+        return $this->render('home/category.html.twig', [
+            'controller_name' => 'HomeController',
+            'category' => $category,
+            'products' => $products,
+        ]);
+    }
+
+
+    // route that will get all products from DB
+    #[Route('/products', name: 'products')]
     public function showAll(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Product::class);
         $products = $repository->findAll();
 
-        // return new Response('This is the product with id ' . $product->getId() . ' and name ' . $product->getName());
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
             'products' => $products,
         ]);
     }
 
-    // this is not working atm because Category and Seller are Class type, not int. 
-    // public function addProduct(ManagerRegistry $doctrine): Response
-    // {
 
-    //     $category = new Category();
-    //     $category->setName('Cat Food');
-
-    //     $user = new User();
-    //     $user->setUsername('Gru101');
-
-    //     // $product = new Product(
-    //     //     'salmon file',
-    //     //     1,
-    //     //     3,
-    //     //     1,
-    //     //     'wild salmon file, caught by bear paw from nordic pure water rivers',
-    //     //     'no image',
-    //     //     1,
-    //     //     '2022-01-01',
-    //     //     'new'
-    //     // );
-
-    //     $product = new Product();
-    //     $product->setName('salmon file');
-    //     $product->setCategory($category);
-    //     $product->setPrice(3);
-    //     $product->setQuantity(1);
-    //     $product->setDescription('wild salmon file, caught by bear paw from nordic pure water rivers');
-    //     $product->setImage('no image');
-    //     $product->setSeller(1);
-    //     $product->setDate('2022-01-01');
-    //     $product->setState('new');
-
-    //     $entityManager = $doctrine->getManager();
-
-    //     $entityManager->persist($category);
-    //     $entityManager->persist($user);
-    //     $entityManager->persist($product);
-    //     $entityManager->flush();
-
-    //     return new Response('Saved new product with id ' . $product->getId());
-    // }
-
-    /**
-     * @Route("/product/{id}", name="product_show")
-     */
+    // route for a specific product from DB based on it's ID
+    #[Route('/product/{id}', name: 'product-by-id')]
     public function showById(int $id, ProductRepository $productRepository): Response
     {
         $product = $productRepository
@@ -92,26 +63,35 @@ class ProductController extends AbstractController
         ]);
     }
 
-    // route from homepage based on Category name
-    // still wip because the 
-    #[Route('/category/{name}', name: 'category-name')]
-    public function showCategoryByName(string $name, CategoryRepository $categoryRepository, ProductRepository $productRepository, ManagerRegistry $doctrine): Response
+
+    // wip add product route. atm it's kinda hard(core) coded but it does work and it does add to DB.
+    // all the variables values should come from somewhere, like a form or something.
+    // if we can manage to get that to work, then we're gucci
+    #[Route('/add-product', name: 'add-product')]
+    public function addProduct(ManagerRegistry $doctrine, CategoryRepository $categoryRepository, UserRepository $userRepository): Response
     {
-        // $category = $categoryRepository
-        //     ->find($id); 
 
-        $categoryRepository = $doctrine->getRepository(Category::class);
-        $category = $categoryRepository->findOneBy(['name' => $name]);
+        $categoryRepository = new CategoryRepository($doctrine);
+        $categoryObject = $categoryRepository->find(1);
 
-        $categoryId = $category->getId();
+        $userRepository = new UserRepository($doctrine);
+        $userObject = $userRepository->find(1);
 
-        $products = $productRepository->getAllProductsByCategoryId($categoryId);
-        // $productRepository = $doctrine->getRepository(Product::class)->getAllProductsByCategoryId($catId);
+        $product = new Product();
+        $product->setName('another stupid name');
+        $product->setCategory($categoryObject);
+        $product->setPrice(12);
+        $product->setQuantity(1);
+        $product->setDescription('fresh, tasty duck, slightly flambe for extra taste');
+        $product->setImage('duck image');
+        $product->setSeller($userObject);
+        $product->setDate('2022-01-06');
+        $product->setState('new');
 
-        return $this->render('home/detail.html.twig', [
-            'controller_name' => 'HomeController',
-            'category' => $category,
-            'products' => $products,
-        ]);
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($product);
+        $entityManager->flush();
+
+        return new Response('Saved new product with id ' . $product->getId());
     }
 }
