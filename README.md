@@ -9,6 +9,7 @@
 * After type this command : php bin/console doctrine:schema:update --force 
 
 * database in php format - done https://github.com/StefanAmur/scrum-project
+* Scrum: https://trello.com/b/0bUIkzxj/project-management
 # scrum-project
 ### Team : 
 - Lakneswaran ( backend)
