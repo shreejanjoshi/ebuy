@@ -16,6 +16,8 @@ Ebay clone Ebuy with symfony 5.4
 - Shreejan (backend)
 - Stefan (Backend)
 
+- https://trello.com/b/0bUIkzxj/project-management
+
 
 ## Project : Recreate E-bay - deadline : 7th January 2022 (3 weeks)
 

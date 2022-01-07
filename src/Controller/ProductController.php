@@ -36,7 +36,10 @@ class ProductController extends AbstractController
             'category' => $category,
             'products' => $products,
         ]);
+
+               
     }
+    
 
 
     // route that will get all products from DB
@@ -50,6 +53,8 @@ class ProductController extends AbstractController
             'controller_name' => 'ProductController',
             'products' => $products,
         ]);
+
+       
     }
 
 

@@ -1,8 +1,9 @@
 {% block header %}
+
     <!-- Header section -->
     <header class="header-section clearfix">
         <a href="{{path('home')}}" class="site-logo">
-            <img src="{{asset('img/logo2.png')}}" height="70px" alt="">
+            <img id="git " src="{{asset('img/logo2.png')}}" height="70px" alt="">
         </a>
         <div class="header-right">
             <div class="user-panel">
@@ -12,23 +13,20 @@
                     <a href="{{path('register')}}" class="register">Register</a>
                 {% endif %}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{path('app_logout')}}" class="register">Logout</a>
-                    {# <a href="{{path('home')}}">{{app.user.firstName}}</a> #}
+                    {# <a href="{{path('app_logout')}}" class="login">Logout</a> #}
                 {% endif %}
             </div>
         </div>
         <ul class="main-menu">
             <li><a href="{{path('home')}}">Home</a></li>
             <li><a href="{{path('contact')}}">Contact Us</a></li>
-            <li><a href="{{path('products')}}">Products</a></li>
 
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-                <li><a href="#">{{app.user.firstName}}</a>
+                <li><a href="#">Profile</a>
                     <ul class="sub-menu">
-                        <li><a href="{{path('createproduct')}}">Add Product</a></li>
-                        <li><a href="{{path('order')}}">Order</a></li>
-                        <li><a href="{{path('myInfo')}}">My Info</a></li>
+                        <li><a href="">Produts</a></li>
+                        <li><a href="">Sell</a></li>
                         <li><a href="{{path('app_logout')}}">Logout</a></li>
                     </ul>
                 </li>
