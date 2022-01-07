@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\User;
+use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
@@ -12,6 +13,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractController
 {
@@ -67,6 +70,7 @@ class ProductController extends AbstractController
     // wip add product route. atm it's kinda hard(core) coded but it does work and it does add to DB.
     // all the variables values should come from somewhere, like a form or something.
     // if we can manage to get that to work, then we're gucci
+
     #[Route('/add-product', name: 'add-product')]
     public function addProduct(ManagerRegistry $doctrine, CategoryRepository $categoryRepository, UserRepository $userRepository): Response
     {
@@ -93,5 +97,36 @@ class ProductController extends AbstractController
         $entityManager->flush();
 
         return new Response('Saved new product with id ' . $product->getId());
+    }
+
+    #[Route('/create', name: 'createproduct')]
+    public function createProduct (ManagerRegistry $doctrine, Request $request){
+        $product = new Product();
+        $form =$this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            $em = $doctrine->getManager();
+            $image = $request->files->get('product')['attachment'];
+
+            if($image){
+                $filename = md5(uniqid()). '.'. $image->guessClientExtension();
+            }
+
+            $image->move(
+                $this->getParameter('image_folder'),
+                $filename
+            );
+            $product->setImage($filename);
+            $em->persist($product);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('home'));
+        }
+
+
+        return $this->render('product/create.html.twig', [
+            'productCreateForm' => $form->createView()
+        ]);
     }
 }
