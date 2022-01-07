@@ -3,18 +3,42 @@
 {% block title %}Hello UserInfoController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/ebuy/src/Controller/UserInfoController.php'|file_link(0) }}">src/Controller/UserInfoController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/ebuy/templates/user_info/index.html.twig'|file_link(0) }}">templates/user_info/index.html.twig</a></code></li>
-    </ul>
+<br>
+<div class="container">
+<h2>My Info</h2>
+<br>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <td>First name</td>
+            <td>{{app.user.firstName}}</td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td>{{app.user.lastName}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{app.user.email}}</td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>{{app.user.country}}</td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>{{app.user.city}}</td>
+        </tr>
+        <tr>
+            <td>Postcode</td>
+            <td>{{app.user.postCode}}</td>
+        </tr>
+        <tr>
+            <td>Street name and number</td>
+            <td>{{app.user.addressLine}}</td>
+        </tr>
+    </tbody>
+</table>
 </div>
 {% endblock %}
