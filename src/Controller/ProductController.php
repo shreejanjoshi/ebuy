@@ -106,6 +106,7 @@ class ProductController extends AbstractController
 
     #[Route('/create', name: 'createproduct')]
     public function createProduct (ManagerRegistry $doctrine, Request $request){
+
         $product = new Product();
         $form =$this->createForm(ProductType::class, $product);
         $form->handleRequest($request);

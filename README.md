@@ -1,5 +1,6 @@
 # ebuy
 ## Steps:
+
 * clone : https://github.com/shreejanjoshi/ebuy
 * add vendor and var files in your folder.
 * creat an account in https://mailtrap.io/ -> inbox -> SMTP setting -> integration click on symfony 5+ and copy the       Mailer_DNS
@@ -7,7 +8,8 @@
 * write your database username and password to connect.
 * After type this command : php bin/console doctrine:schema:update --force 
 
-Ebay clone Ebuy with symfony 5.4
+* database in php format - done https://github.com/StefanAmur/scrum-project
+* Scrum: https://trello.com/b/0bUIkzxj/project-management
 # scrum-project
 ### Team : 
 - Lakneswaran ( backend)
