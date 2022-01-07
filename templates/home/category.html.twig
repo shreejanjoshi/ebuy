@@ -4,4 +4,22 @@
 
 {% block body %}
 
+</div>
+    <div class="container">
+       {% for product in products %}
+    <div class="card" p-2>
+    <div class="card-header">
+        <img width = "100px" height="100px" src="{{ product.image}}" alt="{{product.name}} image" />
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{product.description}}</p>
+        <p class="card-text">{{product.quantity}} available</p>
+        <p class="card-text">{{product.price}} euro</p>
+        <a class="btn btn-outline-danger btn-sm" href={{ path('toOrder',{id: product.id} )}} role="button">Order</a>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
