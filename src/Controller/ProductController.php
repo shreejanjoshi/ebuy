@@ -43,12 +43,7 @@ class ProductController extends AbstractController
         $repository = $doctrine->getRepository(Product::class);
         $products = $repository->findAll();
 
-<<<<<<< HEAD
         return $this->render('product/index.html.twig', [
-=======
-        // return new Response('This is the product with id ' . $product->getId() . ' and name ' . $product->getName());
-        return $this->render('product/detail.html.twig', [
->>>>>>> main
             'controller_name' => 'ProductController',
             'products' => $products,
         ]);
