@@ -16,8 +16,9 @@ class Product
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
+    // #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Category", inversedBy:'products')]
+    // #[ORM\JoinColumn(nullable: false)]
     private $category;
 
     #[ORM\Column(type: 'float')]

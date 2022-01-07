@@ -24,7 +24,9 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
+    // #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
+    #[ORM\OneToMany(targetEntity:"App\Entity\Product", mappedBy:'category')]
+
     private $products;
 
     public function __construct()
@@ -101,5 +103,10 @@ class Category
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
