@@ -23,7 +23,7 @@
 
 			<tbody>
 				{% for products in product %}
-					{% set total =total+(products.quantity * products.price) %}
+					{% set total = total+(products.quantity * products.price) %}
 					<tr>
 						<td>{{products.id}}</td>
 						<td>{{products.name}}</td>
