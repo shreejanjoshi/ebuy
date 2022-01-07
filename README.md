@@ -10,8 +10,8 @@
 Ebay clone Ebuy with symfony 5.4
 # scrum-project
 ### Team : 
-- Lakneswaran (frontend and backend)
-- Binayak (Frontend)
+- Lakneswaran ( backend)
+- Binayak (backend)
 - Christiaan (Backend)
 - Shreejan (backend)
 - Stefan (Backend)
