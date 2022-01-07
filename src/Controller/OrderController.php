@@ -25,7 +25,7 @@ class OrderController extends AbstractController
         ]);
     }
     #[Route('/toOrder/{id}', name: 'toOrder')]
-    public function order(ManagerRegistry $doctrine, Request $request){
+    public function order(ManagerRegistry $doctrine){
         $order = new Order();
         $product = new Product();
         $order->setProduct($product->getName());
