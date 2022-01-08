@@ -28,6 +28,13 @@ class HomeController extends AbstractController
        
    ]);
 
+   return $this->render('products/index.html.twig', [
+    'controller_name' => 'HomeController',
+    'categories' => $categories,
+
+    
+    ]);
+
    
 
     }
